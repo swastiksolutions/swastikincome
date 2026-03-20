@@ -24,8 +24,8 @@
   --r:12px;--r2:16px;
   --font:'Inter',sans-serif;--mono:'DM Mono',monospace;
 }
-html,body{height:100%}
-body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"cv02","cv03","cv04","cv11"}
+html{height:-webkit-fill-available}body{height:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;min-height:100vh;min-height:-webkit-fill-available;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"cv02","cv03","cv04","cv11"}
 
 /* LOCK */
 #lock{position:fixed;inset:0;background:linear-gradient(135deg,#bae6fd 0%,#e0f2fe 50%,#f0f9ff 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
@@ -52,9 +52,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 #lomsg{font-size:12px;color:var(--text3);font-weight:500}
 
 /* LAYOUT */
-.app{display:flex;min-height:100vh;overflow-x:hidden}
+.app{display:flex;min-height:100vh;min-height:-webkit-fill-available;overflow-x:hidden}
 .sb{width:220px;min-width:220px;background:#1e3a5f;border-right:none;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100;display:flex;flex-direction:column}
-.mn{margin-left:220px;flex:1;padding:24px;min-height:100vh;overflow-x:hidden}
+.mn{margin-left:220px;flex:1;padding:24px;overflow-x:hidden}
 
 /* SIDEBAR */
 .sb-top{padding:18px 16px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(135deg,#1a3352,#1e3a5f)}
@@ -72,14 +72,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 @keyframes pu{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* CARDS */
-.card{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.05)}
-.sc{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);padding:16px;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.card{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.05);-webkit-transform:translateZ(0)}
+.sc{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);padding:16px;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.05);-webkit-transform:translateZ(0)}
 .sc:hover{border-color:#38bdf8;box-shadow:0 2px 8px rgba(14,165,233,.12)}
 .sl{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
 .sv{font-size:21px;font-weight:500;font-family:var(--mono);line-height:1.1;letter-spacing:-.5px}
 .ss{font-size:11px;color:var(--text3);margin-top:3px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;border:none;cursor:pointer;font-size:13px;font-weight:700;font-family:var(--font);transition:all .15s;white-space:nowrap}
@@ -104,7 +104,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .gtv{font-size:26px;font-weight:500;font-family:var(--mono);color:#fff;letter-spacing:-.5px}
 
 /* TABLES */
-.tw{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;display:block;width:100%;position:relative}
+.tw{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;display:block;width:100%;position:relative;-webkit-transform:translateZ(0)}
 table{width:100%;border-collapse:collapse;font-size:11px}
 th{background:#f0f9ff;color:#475569;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.07em;padding:8px 7px;text-align:right;border-bottom:2px solid var(--border2);white-space:nowrap;font-family:var(--font)}
 th.l{text-align:left}
@@ -151,7 +151,7 @@ tfoot td{background:#f0f9ff;font-weight:700;border-top:2px solid var(--border2);
 /* ══ MOBILE — iPhone optimised ══ */
 @media(max-width:700px){
   /* Bottom tab bar */
-  .sb{width:100%;height:auto;position:fixed;bottom:0;top:auto;overflow-y:hidden;overflow-x:auto;
+  .sb{width:100%;height:auto;position:fixed;bottom:0;top:auto;overflow-y:hidden;overflow-x:auto;z-index:200;
       flex-direction:row;border-right:none;border-top:1px solid var(--border);
       z-index:200;background:#1e3a5f}
   .sb-top,.sb-foot{display:none}
@@ -171,7 +171,7 @@ tfoot td{background:#f0f9ff;font-weight:700;border-top:2px solid var(--border2);
   .mob-top{display:flex!important}
 
   /* Main content */
-  .mn{margin-left:0;padding:12px 12px 76px;padding-top:68px}
+  .mn{margin-left:0!important;padding:12px 12px 76px;padding-top:68px;background:var(--bg);min-height:100dvh;width:100vw;max-width:100vw;position:relative;z-index:1}
 
   /* Grids */
   .g4{grid-template-columns:1fr 1fr;gap:10px}
@@ -209,6 +209,11 @@ tfoot td{background:#f0f9ff;font-weight:700;border-top:2px solid var(--border2);
 }
 
 /* iPhone safe area (notch + home bar) */
+/* iOS viewport height fix */
+@supports(-webkit-touch-callout:none){
+  .mn{min-height:-webkit-fill-available}
+  .app{min-height:-webkit-fill-available}
+}
 @supports(padding:max(0px)){
   @media(max-width:700px){
     .sb{padding-bottom:env(safe-area-inset-bottom)}
@@ -310,7 +315,7 @@ input[type=number],input[type=date],input[type=text],input[type=password]{font-s
   </aside>
   <!-- Mobile top header (hidden on desktop, shown on mobile) -->
   <div class="mob-top" id="mob-top" style="display:none;position:fixed;top:0;left:0;right:0;
-    background:#f0f9ff;border-bottom:1px solid var(--border);z-index:150;
+    background:#f0f9ff;border-bottom:1px solid var(--border);z-index:190;
     padding:8px 16px 8px;align-items:center;justify-content:space-between;
     box-shadow:0 2px 12px rgba(0,0,0,.3)">
     <div class="flex aic g2r">
@@ -657,8 +662,8 @@ function rDash(){
       ${cats.map(c=>{const p2=tot>0?c.v/tot*100:0;return`<div class="flex aic g2r mb3" style="font-size:11px"><span style="width:55px;color:var(--s6);flex-shrink:0">${c.l}</span><div style="flex:1;height:5px;background:var(--s2);border-radius:3px;overflow:hidden"><div style="height:100%;width:${Math.min(100,p2)}%;background:${c.c};border-radius:3px"></div></div><span style="width:32px;text-align:right;font-family:monospace;font-weight:600">${pct(p2)}</span><span style="width:78px;text-align:right;font-family:monospace;color:var(--s5)">${inr(c.v)}</span></div>`}).join('')}
     </div>
   </div>
-  <div class="card p4 mb4"><div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Monthly Income by Category</div><div style="font-size:11px;color:var(--text3);margin-bottom:10px">April 2026 – March 2027</div><div class="chart-h-lg" style="height:230px"><canvas id="bc"></canvas></div></div>
-  <div class="card p4 mb4"><div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Cumulative Achievement vs Target</div><div style="font-size:11px;color:var(--text3);margin-bottom:10px">Running total through the year</div><div class="chart-h-sm" style="height:190px"><canvas id="lc"></canvas></div></div>
+  <div class="card p4 mb4" style="position:relative"><div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Monthly Income by Category</div><div style="font-size:11px;color:var(--text3);margin-bottom:10px">April 2026 – March 2027</div><div class="chart-h-lg" style="height:230px;position:relative;width:100%"><canvas id="bc" style="display:block"></canvas></div></div>
+  <div class="card p4 mb4" style="position:relative"><div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px">Cumulative Achievement vs Target</div><div style="font-size:11px;color:var(--text3);margin-bottom:10px">Running total through the year</div><div class="chart-h-sm" style="height:190px;position:relative;width:100%"><canvas id="lc" style="display:block"></canvas></div></div>
   <div class="card mb4"><div class="p4" style="border-bottom:1px solid var(--s3);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:space-between"><span>Month-wise Summary</span><button class="btn bs bsm" onclick="expSummary()" style="font-size:11px;padding:5px 12px">⬇ Export Summary Excel</button></div>
   <div class="tw"><table style="min-width:700px"><thead><tr><th class="l">Month</th><th>Tally</th><th>Support</th><th>HW</th><th>AWS</th><th>Cust</th><th>BA&CF</th><th>Svc</th><th>TD</th><th style="background:var(--s3)">Total</th><th>Cumulative</th></tr></thead>
   <tbody>${(()=>{let c=0;return md.map(m=>{c+=m.tot;return`<tr onclick="go('m',${m.n},${m.y})"><td class="l bl fw6">${m.nm} ${m.y}</td><td>${m.tT?inr(m.tT):'-'}</td><td>${m.tally_support?inr(m.tally_support):'-'}</td><td>${m.hT?inr(m.hT):'-'}</td><td>${m.aT?inr(m.aT):'-'}</td><td>${m.cT?inr(m.cT):'-'}</td><td>${m.bT?inr(m.bT):'-'}</td><td>${m.sT?inr(m.sT):'-'}</td><td>${m.dT?inr(m.dT):'-'}</td><td class="fw7">${inr(m.tot)}</td><td class="gr">${inr(c)}</td></tr>`}).join('')})()}</tbody>
